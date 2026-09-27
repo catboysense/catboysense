@@ -6,6 +6,8 @@
 
 <a href="https://github.com/kittenello/Bahagram/pulls?q=is%3Apr+author%3Acatboysense+is%3Amerged"><img src="https://img.shields.io/github/issues-search?query=repo%3Akittenello%2FBahagram%20is%3Apr%20is%3Amerged%20author%3Acatboysense&label=PR%20%D0%B2%20Bahagram&color=ff5fa2&labelColor=5b2a6e&style=for-the-badge&logo=github&logoColor=white" alt="мои смёрженные PR в Bahagram"></a>
 
+<img src="assets/paws.svg" width="640" alt="дорожка кошачьих лапок">
+
 <h3>✧ стек ✧</h3>
 
 <img src="https://skillicons.dev/icons?i=swift,ts,js,html,css,git,githubactions&theme=light" alt="Swift, TypeScript, JavaScript, HTML, CSS, Git, GitHub Actions">

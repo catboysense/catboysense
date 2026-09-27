@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="44" viewBox="0 0 640 44" role="img" aria-label="дорожка кошачьих лапок">
+  <title>дорожка кошачьих лапок</title>
+  <style>
+    .p { opacity: .2; transform-box: fill-box; transform-origin: center; animation: step 6.0s ease-in-out infinite; }
+    @keyframes step {
+      0% { opacity: .2; transform: scale(.85); }
+      6% { opacity: 1; transform: scale(1.12); }
+      12% { opacity: 1; transform: scale(1); }
+      45% { opacity: 1; transform: scale(1); }
+      68%, 100% { opacity: .2; transform: scale(.9); }
+    }
+  </style>
+  <defs>
+    <g id="paw">
+      <ellipse cx="0" cy="6" rx="9" ry="7.5"/>
+      <ellipse cx="-10" cy="-5" rx="3.6" ry="4.6"/>
+      <ellipse cx="-3.6" cy="-10.5" rx="3.6" ry="4.6"/>
+      <ellipse cx="3.6" cy="-10.5" rx="3.6" ry="4.6"/>
+      <ellipse cx="10" cy="-5" rx="3.6" ry="4.6"/>
+    </g>
+  </defs>
+  <g transform="translate(50 16) rotate(82) scale(.62)"><use class="p" href="#paw" fill="#ff8fc3" style="animation-delay:0.00s"/></g>
+  <g transform="translate(110 28) rotate(98) scale(.62)"><use class="p" href="#paw" fill="#ef92d0" style="animation-delay:0.28s"/></g>
+  <g transform="translate(170 16) rotate(82) scale(.62)"><use class="p" href="#paw" fill="#e095de" style="animation-delay:0.56s"/></g>
+  <g transform="translate(230 28) rotate(98) scale(.62)"><use class="p" href="#paw" fill="#d098eb" style="animation-delay:0.84s"/></g>
+  <g transform="translate(290 16) rotate(82) scale(.62)"><use class="p" href="#paw" fill="#c19bf8" style="animation-delay:1.12s"/></g>
+  <g transform="translate(350 28) rotate(98) scale(.62)"><use class="p" href="#paw" fill="#b49fff" style="animation-delay:1.40s"/></g>
+  <g transform="translate(410 16) rotate(82) scale(.62)"><use class="p" href="#paw" fill="#aba5ff" style="animation-delay:1.68s"/></g>
+  <g transform="translate(470 28) rotate(98) scale(.62)"><use class="p" href="#paw" fill="#a2acff" style="animation-delay:1.96s"/></g>
+  <g transform="translate(530 16) rotate(82) scale(.62)"><use class="p" href="#paw" fill="#98b2ff" style="animation-delay:2.24s"/></g>
+  <g transform="translate(590 28) rotate(98) scale(.62)"><use class="p" href="#paw" fill="#8fb8ff" style="animation-delay:2.52s"/></g>
+</svg>
