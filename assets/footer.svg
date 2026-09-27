@@ -1,0 +1,206 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="180" viewBox="0 0 1000 180" role="img" aria-label="спасибо, что заглядываешь (=^･ω･^=)">
+  <title>спасибо, что заглядываешь</title>
+  <style>
+    .t1 { font: 800 31px system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; fill: #7a4690; }
+    .t2 { font: 700 24px system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; fill: #ff5fa2; }
+    .peekL { animation: peek 4s ease-in-out infinite; }
+    .peekR { animation: peek 4s ease-in-out infinite; animation-delay: -2s; }
+    @keyframes peek { 0%, 100% { transform: translateY(8px); } 50% { transform: translateY(-2px); } }
+    .waveA { animation: driftA 9s linear infinite; }
+    .waveB { animation: driftB 6s linear infinite; }
+    @keyframes driftA { to { transform: translateX(-250px); } }
+    @keyframes driftB { from { transform: translateX(-200px); } to { transform: translateX(0); } }
+    .tw { transform-box: fill-box; transform-origin: center; animation: tw 2.6s ease-in-out infinite; }
+    @keyframes tw { 0%, 100% { transform: scale(.3) rotate(0deg); opacity: .2; } 50% { transform: scale(1) rotate(25deg); opacity: 1; } }
+    .beat { transform-box: fill-box; transform-origin: center; animation: beat 1.5s ease-in-out infinite; }
+    @keyframes beat { 0%, 60%, 100% { transform: scale(1); } 14% { transform: scale(1.25); } 28% { transform: scale(.95); } 42% { transform: scale(1.15); } }
+    /* character bits, same as the header */
+    .head { transform-origin: 120px 176px; animation: tilt 4.4s ease-in-out infinite; }
+    .cb .head { animation-delay: -2.2s; }
+    .blink { transform-origin: 120px 130px; animation: blink 4.6s linear infinite; }
+    .cb .blink { animation-duration: 5.3s; animation-delay: -1.7s; }
+    .cear-l { transform-origin: 78px 58px; animation: twitch 6s ease-in-out infinite; }
+    .cear-r { transform-origin: 162px 58px; animation: twitch 6s ease-in-out infinite; animation-delay: -3.1s; }
+    .cb .cear-l { animation-delay: -1.4s; }
+    .cb .cear-r { animation-delay: -4.2s; }
+    .ahoge { transform-origin: 122px 34px; animation: boing 2.2s ease-in-out infinite; }
+    @keyframes twitch { 0%, 82%, 100% { transform: rotate(0deg); } 85% { transform: rotate(-16deg); } 88% { transform: rotate(6deg); } 91% { transform: rotate(-8deg); } 94% { transform: rotate(0deg); } }
+    @keyframes tilt { 0%, 100% { transform: rotate(-3deg); } 50% { transform: rotate(3deg); } }
+    @keyframes blink { 0%, 93%, 100% { transform: scaleY(1); } 96% { transform: scaleY(.08); } }
+    @keyframes boing { 0%, 100% { transform: rotate(-8deg); } 50% { transform: rotate(10deg); } }
+  </style>
+  <defs>
+    <linearGradient id="bgF" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#d3e8ff"/>
+      <stop offset=".5" stop-color="#ead9ff"/>
+      <stop offset="1" stop-color="#ffd3e9"/>
+    </linearGradient>
+    <linearGradient id="waveFill" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ffb3d6"/>
+      <stop offset=".5" stop-color="#d9b8ff"/>
+      <stop offset="1" stop-color="#ffb3d6"/>
+    </linearGradient>
+    <clipPath id="cardF"><rect width="1000" height="180" rx="28"/></clipPath>
+    <path id="heart" d="M0 8C-14-2-12-14-5-14C-2-14 0-11 0-9C0-11 2-14 5-14C12-14 14-2 0 8Z" />
+    
+    <path id="spark" d="M0-12C1.5-3 3-1.5 12 0C3 1.5 1.5 3 0 12C-1.5 3-3 1.5-12 0C-3-1.5-1.5-3 0-12Z" />
+    
+    <g id="paw">
+      <ellipse cx="0" cy="6" rx="9" ry="7.5" />
+      <ellipse cx="-10" cy="-5" rx="3.6" ry="4.6" />
+      <ellipse cx="-3.6" cy="-10.5" rx="3.6" ry="4.6" />
+      <ellipse cx="3.6" cy="-10.5" rx="3.6" ry="4.6" />
+      <ellipse cx="10" cy="-5" rx="3.6" ry="4.6" />
+    </g>
+
+    
+    
+    <path id="face" d="M62 96C60 128 70 156 96 170C108 177 132 177 144 170C170 156 180 128 178 96C178 60 152 44 120 44C88 44 62 60 62 96Z" />
+    
+    <path id="cEarL" d="M58 72C52 50 48 30 50 14C66 22 84 32 98 44Z" />
+    
+    <path id="cEarR" d="M182 72C188 50 192 30 190 14C174 22 156 32 142 44Z" />
+    
+    <path id="cEarInL" d="M64 62C60 46 58 34 59 26C70 32 80 38 88 46Z" />
+    
+    <path id="cEarInR" d="M176 62C180 46 182 34 181 26C170 32 160 38 152 46Z" />
+    
+    <g id="blush">
+      <g fill="#ff7fae" opacity=".45"><ellipse cx="78" cy="151" rx="11" ry="6" /><ellipse cx="162" cy="151" rx="11" ry="6" /></g>
+      <path d="M72 153l4-5M78 153l4-5M84 153l4-5M156 153l4-5M162 153l4-5M168 153l4-5" stroke="#ff5f9a" stroke-width="1.6" stroke-linecap="round" opacity=".75" />
+    </g>
+    
+    <linearGradient id="cgHair" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffbadd" />
+      <stop offset="1" stop-color="#ff7fba" />
+    </linearGradient>
+    
+    <linearGradient id="cgHairBack" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ff96c8" />
+      <stop offset="1" stop-color="#ec5f9f" />
+    </linearGradient>
+    
+    <linearGradient id="cgIris" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4a2fb8" />
+      <stop offset=".45" stop-color="#7b5cff" />
+      <stop offset="1" stop-color="#93dcff" />
+    </linearGradient>
+    
+    <linearGradient id="cbHair" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#6552a3" />
+      <stop offset="1" stop-color="#2f2456" />
+    </linearGradient>
+    
+    <linearGradient id="cbHairBack" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#44357a" />
+      <stop offset="1" stop-color="#231a42" />
+    </linearGradient>
+    
+    <linearGradient id="cbIris" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ff8a00" />
+      <stop offset=".5" stop-color="#ffc93a" />
+      <stop offset="1" stop-color="#fff1a8" />
+    </linearGradient>
+    
+    <radialGradient id="glow">
+      <stop offset="0" stop-color="#fff" stop-opacity=".85" />
+      <stop offset="1" stop-color="#fff" stop-opacity="0" />
+    </radialGradient>
+    
+  </defs>
+  <g clip-path="url(#cardF)">
+    <rect width="1000" height="180" fill="url(#bgF)"/>
+    <circle cx="500" cy="80" r="220" fill="url(#glow)" opacity=".7"/>
+    <g fill="#fff" opacity=".5">
+      <use href="#paw" transform="translate(262 40) rotate(-20) scale(.8)"/>
+      <use href="#paw" transform="translate(300 128) rotate(14) scale(.6)"/>
+      <use href="#paw" transform="translate(738 36) rotate(20) scale(.8)"/>
+      <use href="#paw" transform="translate(702 126) rotate(-12) scale(.6)"/>
+    </g>
+    <g fill="#fff">
+      <g transform="translate(250 90) scale(.8)"><use class="tw" href="#spark" style="animation-delay:-.6s"/></g>
+      <g transform="translate(752 84)"><use class="tw" href="#spark" style="animation-delay:-1.6s"/></g>
+    </g>
+
+    <g class="cg" transform="translate(40 20) scale(.78)" stroke-linejoin="round" stroke-linecap="round"><g class="peekL">
+<g class="head">
+        <path d="M46 110C40 70 66 26 120 26C174 26 200 70 194 110C192 150 198 190 206 214C190 210 180 204 172 196C176 206 178 214 182 224C164 216 156 204 150 192L90 192C84 204 76 216 58 224C62 214 64 206 68 196C60 204 50 210 34 214C42 190 48 150 46 110Z" fill="url(#cgHairBack)" stroke="#5b2a52" stroke-width="3.2" />
+        <g class="cear-l"><use href="#cEarL" fill="url(#cgHair)" stroke="#5b2a52" stroke-width="3.2" /><use href="#cEarInL" fill="#ffd3e7" /></g>
+        <g class="cear-r"><use href="#cEarR" fill="url(#cgHair)" stroke="#5b2a52" stroke-width="3.2" /><use href="#cEarInR" fill="#ffd3e7" /></g>
+      </g>
+      
+      
+<g class="head">
+        <use href="#face" fill="#fff1e9" stroke="#5b2a52" stroke-width="3.2" />
+        <use href="#blush" />
+        <g class="blink">
+          <ellipse cx="94" cy="130" rx="14" ry="18" fill="url(#cgIris)" stroke="#2c1868" stroke-width="2" />
+          <ellipse cx="94" cy="133" rx="6.5" ry="9" fill="#25134f" />
+          <ellipse cx="88" cy="122" rx="5.5" ry="6.5" fill="#fff" />
+          <circle cx="100" cy="140" r="2.8" fill="#fff" />
+          <path d="M76 124C78 112 88 107 97 108C104 109 109 113 111 118M78 119L70 114" fill="none" stroke="#3a1840" stroke-width="4.5" />
+          <ellipse cx="146" cy="130" rx="14" ry="18" fill="url(#cgIris)" stroke="#2c1868" stroke-width="2" />
+          <ellipse cx="146" cy="133" rx="6.5" ry="9" fill="#25134f" />
+          <ellipse cx="140" cy="122" rx="5.5" ry="6.5" fill="#fff" />
+          <circle cx="152" cy="140" r="2.8" fill="#fff" />
+          <path d="M164 124C162 112 152 107 143 108C136 109 131 113 129 118M162 119L170 114" fill="none" stroke="#3a1840" stroke-width="4.5" />
+        </g>
+        <path d="M113 157Q120 168 127 157Z" fill="#d9467a" stroke="#5b2a52" stroke-width="2.2" />
+        <ellipse cx="120" cy="162.4" rx="3.2" ry="1.9" fill="#ff9ab8" />
+        <path d="M58 96C50 120 52 160 62 198C66 182 70 160 72 140C74 124 72 110 70 98Z" fill="url(#cgHair)" stroke="#5b2a52" stroke-width="3.2" />
+        <path d="M182 96C190 120 188 160 178 198C174 182 170 160 168 140C166 124 168 110 170 98Z" fill="url(#cgHair)" stroke="#5b2a52" stroke-width="3.2" />
+        <path d="M52 110C48 70 74 32 120 32C166 32 192 70 188 110Q182 94 178 94T170 110Q164 86 160 86T150 102Q143.4 80 139 80T128 100Q121.4 78 117 78T106 100Q100 82 96 82T86 104Q80 88 76 88T66 110Q61.8 98 59 98T52 108Z" fill="url(#cgHair)" stroke="#5b2a52" stroke-width="3.2" />
+        <path d="M80 58C96 46 144 46 160 58" fill="none" stroke="#fff" stroke-opacity=".65" stroke-width="5" />
+        <g class="ahoge"><path d="M118 34C112 16 126 2 144 8C134 10 127 18 126 33Z" fill="url(#cgHair)" stroke="#5b2a52" stroke-width="3" /></g>
+        <g transform="translate(158 42) rotate(18)">
+          <path d="M0 0C-9-10-19-7-18 1C-17 8-8 7 0 0ZM0 0C9-10 19-7 18 1C17 8 8 7 0 0Z" fill="#b99cff" stroke="#5b2a52" stroke-width="2.4" />
+          <circle r="4" fill="#b99cff" stroke="#5b2a52" stroke-width="2.4" />
+        </g>
+      </g>
+      
+      
+    </g></g>
+    <g class="cb" transform="translate(772 20) scale(.78)" stroke-linejoin="round" stroke-linecap="round"><g class="peekR">
+<g class="head">
+        <path d="M48 116C42 72 68 28 120 28C172 28 198 72 192 116C194 140 200 160 206 176C192 172 184 166 178 160C180 172 182 182 186 192C170 186 162 176 158 166H82C78 176 70 186 54 192C58 182 60 172 62 160C56 166 48 172 34 176C40 160 46 140 48 116Z" fill="url(#cbHairBack)" stroke="#1f1638" stroke-width="3.2" />
+        <g class="cear-l"><use href="#cEarL" fill="url(#cbHair)" stroke="#1f1638" stroke-width="3.2" /><use href="#cEarInL" fill="#ffc0dc" /><circle cx="56" cy="60" r="4.4" fill="none" stroke="#e3e6f2" stroke-width="2.4" /></g>
+        <g class="cear-r"><use href="#cEarR" fill="url(#cbHair)" stroke="#1f1638" stroke-width="3.2" /><use href="#cEarInR" fill="#ffc0dc" /></g>
+      </g>
+      
+      
+<g class="head">
+        <use href="#face" fill="#fff1e9" stroke="#3b2a5e" stroke-width="3.2" />
+        <use href="#blush" />
+        <g class="blink">
+          <ellipse cx="94" cy="130" rx="14" ry="18" fill="url(#cbIris)" stroke="#7a3d0a" stroke-width="2" />
+          <ellipse cx="94" cy="131" rx="3.6" ry="12" fill="#2a160a" />
+          <ellipse cx="88" cy="122" rx="5.5" ry="6.5" fill="#fff" />
+          <circle cx="100" cy="140" r="2.8" fill="#fff" />
+          <path d="M76 124C78 112 88 107 97 108C104 109 109 113 111 118M78 119L70 114" fill="none" stroke="#1f1638" stroke-width="4.8" />
+          <ellipse cx="146" cy="130" rx="14" ry="18" fill="url(#cbIris)" stroke="#7a3d0a" stroke-width="2" />
+          <ellipse cx="146" cy="131" rx="3.6" ry="12" fill="#2a160a" />
+          <ellipse cx="140" cy="122" rx="5.5" ry="6.5" fill="#fff" />
+          <circle cx="152" cy="140" r="2.8" fill="#fff" />
+          <path d="M164 124C162 112 152 107 143 108C136 109 131 113 129 118M162 119L170 114" fill="none" stroke="#1f1638" stroke-width="4.8" />
+        </g>
+        <path d="M110 156Q115 161 120 156Q125 161 130 156" fill="none" stroke="#3b2a5e" stroke-width="2.6" />
+        <path d="M113.5 158.5L115.8 164L118.2 159.2Z" fill="#fff" stroke="#3b2a5e" stroke-width="1.4" />
+        <path d="M56 100C48 124 50 150 58 172C62 158 66 140 68 124Z" fill="url(#cbHair)" stroke="#1f1638" stroke-width="3.2" />
+        <path d="M184 100C192 124 190 150 182 172C178 158 174 140 172 124Z" fill="url(#cbHair)" stroke="#1f1638" stroke-width="3.2" />
+        <path d="M50 114C46 70 72 30 120 30C168 30 194 70 190 114Q184 100 178 94Q176 108 170 122Q164 102 156 92Q152 104 146 116Q142 98 134 86Q130 100 124 112Q120 96 114 84Q108 100 104 116Q98 100 92 90Q86 104 82 118Q78 104 72 96Q66 108 62 122Q56 118 50 114Z" fill="url(#cbHair)" stroke="#1f1638" stroke-width="3.2" />
+        <path d="M80 58C96 46 144 46 160 58" fill="none" stroke="#a894ff" stroke-opacity=".75" stroke-width="5" />
+        <g class="ahoge"><path d="M114 32C108 18 112 8 124 4C118 12 120 20 128 30Z" fill="url(#cbHair)" stroke="#1f1638" stroke-width="3" /></g>
+      </g>
+      
+      
+    </g></g>
+
+    <g class="waveB"><path d="M0 158 Q50.0 146 100.0 158 Q150.0 170 200.0 158 Q250.0 146 300.0 158 Q350.0 170 400.0 158 Q450.0 146 500.0 158 Q550.0 170 600.0 158 Q650.0 146 700.0 158 Q750.0 170 800.0 158 Q850.0 146 900.0 158 Q950.0 170 1000.0 158 Q1050.0 146 1100.0 158 Q1150.0 170 1200.0 158 Q1250.0 146 1300.0 158 V180H0Z" fill="#fff" opacity=".55"/></g>
+    <g class="waveA"><path d="M0 150 Q62.5 136 125.0 150 Q187.5 164 250.0 150 Q312.5 136 375.0 150 Q437.5 164 500.0 150 Q562.5 136 625.0 150 Q687.5 164 750.0 150 Q812.5 136 875.0 150 Q937.5 164 1000.0 150 Q1062.5 136 1125.0 150 Q1187.5 164 1250.0 150 V180H0Z" fill="url(#waveFill)"/></g>
+
+    <text class="t1" x="500" y="78" text-anchor="middle">спасибо, что заглядываешь</text>
+    <text class="t2" x="500" y="116" text-anchor="middle">(=^･ω･^=)</text>
+    <g transform="translate(628 108) scale(.8)"><use class="beat" href="#heart" fill="#ff5fa2"/></g>
+    <g transform="translate(372 108) scale(.8)"><use class="beat" href="#heart" fill="#b467ff" style="animation-delay:-.75s"/></g>
+  </g>
+</svg>
