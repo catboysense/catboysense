@@ -1,4 +1,4 @@
-name: змейка
+name: змейка и счётчик коммитов
 
 on:
   schedule:
@@ -26,6 +26,22 @@ jobs:
           outputs: |
             dist/snake.svg?color_snake=#ff5fa2&color_dots=#fbe9f2,#f9c6dd,#f39ac3,#e86aa6,#c93d86
             dist/snake-dark.svg?palette=github-dark&color_snake=#ff8cc6&color_dots=#1f1a24,#4f2440,#7e2f62,#b44289,#ff6fae
+
+      # REST-фильтр ?author= и shields не видят коммиты с noreply-почтой, поиск коммитов не работает в форках,
+      # поэтому считаем через GraphQL по id пользователя и отдаём JSON для shields endpoint.
+      - name: считаем мои коммиты в Bahagram
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          id=$(gh api graphql -f query='query($login: String!) { user(login: $login) { id } }' \
+            -f login="${{ github.repository_owner }}" --jq '.data.user.id')
+          n=$(gh api graphql -f query='query($id: ID!) { repository(owner: "kittenello", name: "Bahagram") {
+                defaultBranchRef { target { ... on Commit { history(author: {id: $id}) { totalCount } } } } } }' \
+            -f id="$id" --jq '.data.repository.defaultBranchRef.target.history.totalCount')
+          test -n "$n"
+          mkdir -p dist
+          printf '{"schemaVersion":1,"label":"коммиты в Bahagram","message":"%s","color":"ff5fa2","labelColor":"5b2a6e","namedLogo":"git","logoColor":"white"}\n' "$n" > dist/bahagram-commits.json
+          cat dist/bahagram-commits.json
 
       - name: кладём картинки в ветку output
         uses: crazy-max/ghaction-github-pages@v5
