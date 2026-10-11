@@ -1,4 +1,4 @@
-name: змейка и счётчик коммитов
+name: змейка и карточка
 
 on:
   schedule:
@@ -19,36 +19,47 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - name: рисуем розовую змейку
+      # первым шагом: checkout чистит рабочую папку, а картинки складываются в dist/
+      - uses: actions/checkout@v7
+
+      - name: рисуем змейку
         uses: Platane/snk/svg-only@v3
         with:
           github_user_name: ${{ github.repository_owner }}
           outputs: |
-            dist/snake.svg?color_snake=#ff5fa2&color_dots=#fbe9f2,#f9c6dd,#f39ac3,#e86aa6,#c93d86
-            dist/snake-dark.svg?palette=github-dark&color_snake=#ff8cc6&color_dots=#1f1a24,#4f2440,#7e2f62,#b44289,#ff6fae
+            dist/snake.svg?color_snake=#ff2e88&color_dots=#ebedf0,#c6c2ca,#8d8794,#4a4550,#0b0b0f
+            dist/snake-dark.svg?palette=github-dark&color_snake=#ff2e88&color_dots=#161b22,#2e2a33,#4e4856,#857e8e,#c9c2cf
 
-      # REST-фильтр ?author= и shields не видят коммиты с noreply-почтой, поиск коммитов не работает в форках,
-      # поэтому считаем через GraphQL по id пользователя и отдаём JSON для shields endpoint.
-      - name: считаем мои коммиты в Donutgram
+      # REST-фильтр ?author= не видит коммиты с noreply-почтой, а поиск коммитов не работает в форках,
+      # поэтому коммиты считаем через GraphQL по id пользователя во всех репозиториях с вкладом
+      # (кроме этого, чтобы правки README не накручивали счётчик), а смёрженные PR — поиском.
+      # Токен workflow видит только публичные репозитории.
+      - name: рисуем карточку
         env:
           GH_TOKEN: ${{ github.token }}
+          OWNER: ${{ github.repository_owner }}
         run: |
           id=$(gh api graphql -f query='query($login: String!) { user(login: $login) { id } }' \
-            -f login="${{ github.repository_owner }}" --jq '.data.user.id')
-          n=$(gh api graphql -f query='query($id: ID!) { repository(owner: "kittenello", name: "Donutgram") {
-                defaultBranchRef { target { ... on Commit { history(author: {id: $id}) { totalCount } } } } } }' \
-            -f id="$id" --jq '.data.repository.defaultBranchRef.target.history.totalCount')
-          test -n "$n"
+            -f login="$OWNER" --jq '.data.user.id')
+          commits=$(gh api graphql -f login="$OWNER" -f id="$id" -f query='query($login: String!, $id: ID!) {
+                user(login: $login) { repositoriesContributedTo(first: 100, includeUserRepositories: true,
+                  contributionTypes: [COMMIT, PULL_REQUEST, REPOSITORY]) { nodes { nameWithOwner
+                  defaultBranchRef { target { ... on Commit { history(author: {id: $id}) { totalCount } } } } } } } }' \
+            | jq --arg self "$OWNER/$OWNER" '[.data.user.repositoriesContributedTo.nodes[]
+                | select(.nameWithOwner != $self) | .defaultBranchRef.target.history.totalCount // 0] | add // 0')
+          prs=$(gh api graphql -f query='query($q: String!) { search(query: $q, type: ISSUE, first: 1) { issueCount } }' \
+            -f q="is:pr is:merged author:$OWNER" --jq '.data.search.issueCount')
+          test -n "$commits" && test -n "$prs"
           mkdir -p dist
-          printf '{"schemaVersion":1,"label":"коммиты в Donutgram","message":"%s","color":"ff5fa2","labelColor":"5b2a6e","namedLogo":"git","logoColor":"white"}\n' "$n" > dist/donutgram-commits.json
-          cat dist/donutgram-commits.json
+          python3 .github/stats_card.py "$prs" "$commits" > dist/stats.svg
+          echo "PR: $prs, коммиты: $commits"
 
       - name: кладём картинки в ветку output
         uses: crazy-max/ghaction-github-pages@v5
         with:
           target_branch: output
           build_dir: dist
-          commit_message: змейка обновлена
+          commit_message: картинки обновлены
           jekyll: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
