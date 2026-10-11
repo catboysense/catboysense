@@ -24,6 +24,6 @@
 
 <img src="assets/footer.svg" width="100%" alt="спасибо, что заглядываешь (=^･ω･^=)">
 
-<img src="https://komarev.com/ghpvc/?username=catboysense&label=views&color=ff5fa2&style=flat-square" alt="просмотры профиля">
+<img src="https://hits.sh/github.com/catboysense.svg?style=flat-square&label=views&color=ff5fa2&extraCount=39" alt="просмотры профиля">
 
 </div>
