@@ -22,13 +22,19 @@ jobs:
       # первым шагом: checkout чистит рабочую папку, а картинки складываются в dist/
       - uses: actions/checkout@v7
 
+      # GitHub не считает коммиты в форках, а аккаунт моложе годового окна,
+      # поэтому на родном календаре змейка бегала по пустому полю. Теперь она ест свой календарь:
+      # официальный + коммиты из публичных форков, окно по возрасту аккаунта (от 20 недель до года).
+      # Рисует её тот же движок Platane/snk — npm-пакет generate-snake-animation, цвета прежние (в snake.mjs).
       - name: рисуем змейку
-        uses: Platane/snk/svg-only@v3
-        with:
-          github_user_name: ${{ github.repository_owner }}
-          outputs: |
-            dist/snake.svg?color_snake=#ff2e88&color_dots=#ebedf0,#c6c2ca,#8d8794,#4a4550,#0b0b0f
-            dist/snake-dark.svg?palette=github-dark&color_snake=#ff2e88&color_dots=#161b22,#2e2a33,#4e4856,#857e8e,#c9c2cf
+        env:
+          GH_TOKEN: ${{ github.token }}
+          OWNER: ${{ github.repository_owner }}
+        run: |
+          npm install --prefix "$RUNNER_TEMP/snk" generate-snake-animation@3.5.0 --ignore-scripts --no-audit --no-fund
+          python3 .github/snake_calendar.py "$OWNER" > "$RUNNER_TEMP/calendar.json"
+          SNK_LIB="$RUNNER_TEMP/snk/node_modules/generate-snake-animation/generateSnakeAnimation.js" \
+            node .github/snake.mjs "$RUNNER_TEMP/calendar.json" dist
 
       # REST-фильтр ?author= не видит коммиты с noreply-почтой, а поиск коммитов не работает в форках,
       # поэтому коммиты считаем через GraphQL по id пользователя во всех репозиториях с вкладом
