@@ -6,10 +6,10 @@
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/catboysense/catboysense/output/snake-dark.svg">
-  <img src="https://raw.githubusercontent.com/catboysense/catboysense/output/snake.svg" alt="розовая змейка ест клетки с моими коммитами">
+  <img src="https://raw.githubusercontent.com/catboysense/catboysense/output/snake.svg" width="100%" alt="розовая змейка ест клетки с моими коммитами">
 </picture>
 
-<img src="https://cdn.jsdelivr.net/gh/abderrahimghazali/clawd-pet@main/public/pets/clawd-working-firefighting.svg" width="180" alt="Clawd тушит пожар из шланга">
+<img src="assets/clawd-firefighting.svg" width="128" alt="Clawd тушит пожар из шланга">
 <br>
 <img src="https://hits.sh/github.com/catboysense.svg?style=flat-square&label=%D0%BF%D1%80%D0%BE%D1%81%D0%BC%D0%BE%D1%82%D1%80%D1%8B&color=ff2e88&labelColor=0a0a0c&extraCount=39" alt="просмотры профиля">
 

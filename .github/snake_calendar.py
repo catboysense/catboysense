@@ -1,21 +1,18 @@
 #!/usr/bin/env python3
 """Builds the contribution calendar that the snake eats.
 
-GitHub's own calendar leaves out commits made in forks, and the account is younger than the
-one-year window, so most of the grid stays empty. This script takes the official calendar, adds
-the owner's commits from public forks, trims the window to the account's age (at least
-MIN_WEEKS, at most the full year), recomputes the four colour levels, and prints the result in
-the GraphQL response shape that Platane/snk reads.
+GitHub's own calendar leaves out commits made in forks, so most of the owner's work never shows
+up on it. This script takes the official one-year calendar, adds the owner's commits from public
+forks, recomputes the four colour levels, and prints the result in the GraphQL response shape
+that Platane/snk reads. The grid keeps the full year, so the snake stays as wide as the cards.
 
 usage: GH_TOKEN=... python3 snake_calendar.py OWNER > calendar.json
 """
-import datetime as dt
 import json
 import os
 import sys
 import urllib.request
 
-MIN_WEEKS = 20
 API = "https://api.github.com/graphql"
 LEVELS = ["NONE", "FIRST_QUARTILE", "SECOND_QUARTILE", "THIRD_QUARTILE", "FOURTH_QUARTILE"]
 
@@ -62,7 +59,7 @@ def fork_commit_days(user, since):
 
 def main():
     owner = sys.argv[1]
-    user = gql("""query($login: String!) { user(login: $login) { id createdAt
+    user = gql("""query($login: String!) { user(login: $login) { id
         contributionsCollection { contributionCalendar { weeks { contributionDays { date weekday contributionCount } } } }
         repositoriesContributedTo(first: 100, includeUserRepositories: true,
           contributionTypes: [COMMIT, PULL_REQUEST, REPOSITORY]) { nodes { owner { login } name isFork isPrivate } } } }""",
@@ -74,11 +71,6 @@ def main():
     for day in extra:
         if day in counts:
             counts[day] += 1
-
-    created = user["createdAt"][:10]
-    first = next((i for i, w in enumerate(weeks) if w[-1]["date"] >= created), 0)
-    keep = min(len(weeks), max(len(weeks) - first, MIN_WEEKS))
-    weeks = weeks[-keep:]
 
     active = sorted(counts[d["date"]] for w in weeks for d in w if counts[d["date"]] > 0)
 
@@ -94,7 +86,7 @@ def main():
         {"contributionDays": [{"date": d["date"], "weekday": d["weekday"], "contributionCount": counts[d["date"]],
                                "contributionLevel": LEVELS[level(counts[d["date"]])]} for d in w]} for w in weeks]}}}}}
     json.dump(out, sys.stdout)
-    print(f"weeks: {keep}, active days: {len(active)}, contributions: {sum(active)} "
+    print(f"weeks: {len(weeks)}, active days: {len(active)}, contributions: {sum(active)} "
           f"(of them {len(extra)} commits from forks)", file=sys.stderr)
 
 
